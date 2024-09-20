@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 3 - Validation</title>
+    <style>
+        body {
+            background-color: rgb(112, 238, 247);
+              justify-content: center;  
+             align-items: center;  
+            color: rgb(12, 12, 12); 
+            text-align: center;
+           padding: 20px; 
+           margin-top: 20%; 
+      } 
+         label {
+            padding: 40px;
+        } 
+        input {
+            /* padding: 2px; */
+            margin-bottom: 10px;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Form Validation</h1>
+
+    <form name="myform" onsubmit="return validateForm()">
+        <div class="myform">
+            Username: <input type="text" id="username" name="username" placeholder="Username" required><br>
+            Password: <input type="password" id="password" name="password" placeholder="Password" required><br>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+    <script>
+        const defaultUsername = "Harshu";
+        const defaultPassword = "Harshu123";
+
+        function validateForm() {
+            const username = document.myform.username.value;
+            const password = document.myform.password.value;
+
+            if (username === null || username === "") {
+                alert("Username can't be blank");
+                return false;
+            }
+
+            if (password === null || password === "") {
+                alert("Password can't be blank");
+                return false;
+            }
+
+            if (username !== defaultUsername) {
+                alert("Incorrect username");
+                return false;
+            }
+
+            if (password !== defaultPassword) {
+                alert("Incorrect password");
+                return false;
+            }
+
+            // Redirect to another page after successful validation
+            window.location.href = "cards01.html";
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>
+
+

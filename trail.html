@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Hello</p>
+    <button type="button" onclick="fetchData()">click</button>
+    <div id="allCountries"></div>
+    <div id="first50Countries"></div>
+    <div id="countriesWithStates"></div>
+    <script>
+        async function fetchData() {
+            const url = 'https://countriesnow.space/api/v0.1/countries/states';
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('Fetched Data:', data); // Console log the data
+
+                const countries = data.data;
+                if (Array.isArray(countries)) {
+                    // Display all country names
+                    const allCountryNames = countries.map(country => country.name).join('<br>');
+                    document.getElementById('allCountries').innerHTML = `<h3>All Countries:</h3>${allCountryNames}`;
+
+                    // Display first 50 country names
+                    const first50CountryNames = countries.slice(0, 50).map(country => country.name).join('<br>');
+                    document.getElementById('first50Countries').innerHTML = `<h3>First 50 Countries:</h3>${first50CountryNames}`;
+
+                    // Display countries with states
+                    const countriesWithStates = countries.filter(country => country.states && country.states.length > 0)
+                                                         .map(country => country.name).join('<br>');
+                    document.getElementById('countriesWithStates').innerHTML = `<h3>Countries with States:</h3>${countriesWithStates}`;
+                } else {
+                    document.getElementById('allCountries').innerHTML = 'No countries found';
+                    document.getElementById('first50Countries').innerHTML = 'No countries found';
+                    document.getElementById('countriesWithStates').innerHTML = 'No countries found';
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error); // Console log the error
+                document.getElementById('allCountries').innerText = 'Error fetching data. Please check the console.';
+                document.getElementById('first50Countries').innerText = 'Error fetching data. Please check the console.';
+                document.getElementById('countriesWithStates').innerText = 'Error fetching data. Please check the console.';
+            }
+        }
+        //fetchData('https://countriesnow.space/api/v0.1/countries/states');
+    </script>
+</body>
+</html>

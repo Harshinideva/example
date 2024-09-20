@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country and States Dropdown</title>
+    <script>
+        function updateStates() {
+            var country = document.getElementById("country").value;
+            var stateDropdown = document.getElementById("state");
+            
+            // Clear existing options
+            stateDropdown.innerHTML = "";
+
+            var states = {
+                "Afghanistan": ["Badakhshan", "Badghis", "Baghlan", "Balkh", "Bamyan", "Daykundi", "Farah", "Faryab", "Ghazni", "Ghōr", "Helmand", "Herat", "Jowzjan", "Kabul", "Kandahar", "Kapisa", "Khost", "Kunar"],
+                "Albania": [],
+                "Algeria": [],
+                "Andorra": [],
+                "Angola": [],
+                "Antigua And Barbuda": [],
+                "Argentina": [],
+                "Armenia": [],
+                "Australia": [],
+                "Austria": [],
+                "Azerbaijan": [],
+                "Bahamas The": [],
+                "Bahrain": [],
+                "Bangladesh": []
+            };
+
+            var selectedStates = states[country];
+
+            if (selectedStates) {
+                for (var i = 0; i < selectedStates.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = selectedStates[i];
+                    option.text = selectedStates[i];
+                    stateDropdown.add(option);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Country and States Dropdown</h1>
+
+    <label for="country">Select Country:</label>
+    <select id="country" onchange="updateStates()">
+        <option value="">--Select a Country--</option>
+        <option value="Afghanistan">Afghanistan</option>
+        <option value="Albania">Albania</option>
+        <option value="Algeria">Algeria</option>
+        <option value="Andorra">Andorra</option>
+        <option value="Angola">Angola</option>
+        <option value="Antigua And Barbuda">Antigua And Barbuda</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Armenia">Armenia</option>
+        <option value="Australia">Australia</option>
+        <option value="Austria">Austria</option>
+        <option value="Azerbaijan">Azerbaijan</option>
+        <option value="Bahamas The">Bahamas The</option>
+        <option value="Bahrain">Bahrain</option>
+        <option value="Bangladesh">Bangladesh</option>
+    </select>
+
+    <br><br>
+
+    <label for="state">Select State:</label>
+    <select id="state">
+        <option value="">--Select a State--</option>
+    </select>
+</body>
+</html>

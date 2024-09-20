@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task2</title>
+    <style>
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            transition: transform 0.3s;
+        }
+        img.active {
+            transform: scale(1.1);
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        p {
+            font-size: 18px;
+        }
+        a {
+            color: blue;
+        }
+        a:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="C:\Users\Harshini\Pictures\Screenshots\Screenshot 2024-08-29 092933.png" id="overImage" onmouseover="mouseover()" onmouseout="mouseOut()">
+        <button onclick="document.getElementById('demo').innerHTML='Price=Rs.5000\\- Per Night'">Price</button>
+        <p id="demo"></p>
+        <a href="#" id="myLink">Type something here</a>
+        <input type="text" id="myInput" onkeydown="randomOperation(event)" placeholder="type here">
+    </div>
+    <script>
+        function mouseover() {
+            const img = document.getElementById('overImage');
+            img.classList.add('active');
+        }
+        function mouseOut() {
+            const img = document.getElementById('overImage');
+            img.classList.remove('active');
+        }
+        function randomOperation(event) {
+            console.log("keypressed", event.key);
+            if (event.key === "Enter") {
+                const input = document.getElementById('myInput');
+                input.dispatchEvent(new Event('change'));
+            }
+        }
+        function handleChange(event) {
+            console.log("input changed");
+            alert("input changed");
+        }
+        document.getElementById('myInput').addEventListener('change', handleChange);
+    </script>
+</body>
+</html>

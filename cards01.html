@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Containers Example</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container, .container-alt {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #5ab5da;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-alt {
+            background-color: #95e4d7; /* Different color */
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            padding: 40px 20px; /* Adjust padding for better spacing */
+        }
+
+        /* Nav Styles */
+        nav {
+    width: 100%;
+    background-color: #5ab5da;
+    padding: 5px; /* Reduced padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: -30px; /* Move the nav container up */
+}
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-left img {
+            width: 40px;
+            height: auto;
+            margin-right: 10px; /* Space between image and text */
+        }
+
+        .nav-left span {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center; /* Center the links */
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .nav-right img {
+            width: 40px;
+            height: auto;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        h4 {
+            color: #12375a;
+            text-align: center;
+        }
+
+        .search-box {
+            margin: 20px;
+            position: relative;
+            width: 400px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-box input[type="text"] {
+            width: 100%;
+            padding: 10px 20%; /* Ensures room for the button */
+            border: none;
+            border-radius: 20px;
+            box-sizing: border-box;
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 5px; /* Space between the button and edge */
+            top: 5px;   /* Space between the button and top of input */
+            bottom: 5px;
+            padding: 0 20px;
+            border: none;
+            border-radius: 20px; /* Make the button fully rounded */
+            background-color: #4875a0;
+            color: white;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        /* Card Styles */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap; /* Allows wrapping of cards */
+            gap: 20px; /* Space between cards */
+            justify-content: center; /* Center the cards */
+        }
+
+        .card1 {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 200px;
+            height: auto;
+            text-align: left;
+            position: relative;
+           bottom: 80px;
+           justify-content: center;
+        }
+        .card2 {
+            background-image: url('../../Harshini/Pictures/Screenshots/button4.png'); /* Replace with your image path */
+        
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 350px;
+    height: auto;
+    text-align: left;
+    position: relative;
+    bottom: 80px;
+    justify-content: center;
+}
+
+
+        .card1 h2,.card2 h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card1 p,.card2 p {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .card1 span,.card2 span {
+            background-color: #14b8a6;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .card1 button,.card2 button {
+            background-color: #14b8a6;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .share-icons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <!-- Left side: Logo and Topic -->
+            <div class="nav-left">
+                <img src="C:\Users\Harshini\Pictures\Screenshots\button 1.png" alt="Left Logo">
+                <span>TOPIC</span>
+            </div>
+            
+            <!-- Center: Navigation links -->
+            <div class="nav-links">
+                <a href="#">HOME</a>
+                <a href="#">BROWSE TOPICS</a>
+                <a href="#">HOW IT WORKS</a>
+                <a href="#">FAQs</a>
+                <a href="#">CONTACT</a>
+                <a href="#">PAGES</a>
+            </div>
+            
+            <!-- Right side: Second logo -->
+            <div class="nav-right">
+                <img src="C:\Users\Harshini\Pictures\Screenshots\button 2.png" alt="Right Logo">
+            </div>
+        </nav>
+
+        <div>
+            <h1>Discover. Learn. Enjoy</h1>
+            <h4>Platform for creatives around the world</h4>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Design, Code, Marketing, Finance">
+            <button type="submit">Search</button>
+        </div>
+    </div>
+
+    <div class="container-alt">
+        <div class="card-container">
+            <div class="card1">
+                <h2>Web Design</h2>
+                <p>When you search for free CSS templates, you will notice that TemplateMo is one of the best websites.</p>
+                <span>14</span>
+                <img src="C:\Users\Harshini\Pictures\Screenshots\button 3.png">
+
+            </div>
+            <div class="card2">
+                <h2>Finance</h2>
+                <p>Topic Listing Template includes homepage, listing page, detail page, and contact page.</p>
+                <span>15</span>
+                <button>Learn More</button>
+                <div class="share-icons">
+                    <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+                    <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Hello</p>
+    <button type="button" onclick="fetchData()">click</button>
+    <div id="statesByCountry"></div>
+    <script>
+        async function fetchData() {
+            const url = 'https://countriesnow.space/api/v0.1/countries/states';
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('Fetched Data:', data); // Console log the data
+
+                const countries = data.data;
+                if (Array.isArray(countries)) {
+                    // Generate HTML for countries with states in array format
+                    let statesHtml = '<pre>';
+                    countries.forEach(country => {
+                        if (country.states && country.states.length > 0) {
+                            const statesArray = country.states.map(state => state.name);
+                            statesHtml += `${country.name}: ${JSON.stringify(statesArray, null, 2)}\n\n`;
+                        }
+                    });
+                    statesHtml += '</pre>';
+                    document.getElementById('statesByCountry').innerHTML = statesHtml;
+                } else {
+                    document.getElementById('statesByCountry').innerHTML = 'No countries found';
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error); // Console log the error
+                document.getElementById('statesByCountry').innerText = 'Error fetching data. Please check the console.';
+            }
+        }
+        // Optionally, you can call fetchData() here to load data when the page loads
+        // fetchData();
+    </script>
+</body>
+</html>

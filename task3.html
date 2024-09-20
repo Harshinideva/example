@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(28, 15, 59) ;
+            justify-content: center;
+            align-items:center;
+            color:white;
+            text-align: center;
+            padding:30px;
+        }
+       /* .body-container{
+            display:flex;
+            
+        }*/
+        .form-group{
+            margin-bottom: 15px;
+
+            
+        }
+        label{
+            padding: 30px;
+        }
+        
+        
+        input{
+            padding: 3px;
+        }
+    </style>
+        
+</head>
+<body>
+    <p><h1>javascript Form Validation</h1></p>
+    <form name="myform" method="post" onsubmit="return validateform()" >  
+        firstnameName: <input type="text" name="name"><br/>  
+        Password: <input type="password" name="password"><br/>  
+        <input type="submit" value="register">
+    <script>
+    if (name==null || name==""){  
+  alert("Name can't be blank");  
+  return false;  
+}else if(password.length<6){  
+  alert("Password must be at least 6 characters long.");  
+  return false;  
+  }  
+  
+    </script>
+    
+
+
+</body>
+</html>

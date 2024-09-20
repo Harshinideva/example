@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Hello</p>
+    <button type="button" onclick="fetchData()">click</button>
+    <div id="output"></div>
+    <script>
+        async function fetchData() {
+            const url = 'https://countriesnow.space/api/v0.1/countries/states';
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('Fetched Data:', data); // Console log the data
+
+                const countries = data.data;
+                if (Array.isArray(countries)) {
+                    // Get the first 50 countries
+                    const first50Countries = countries.slice(0, 50);
+                    const first50CountryNames = first50Countries.map(country => country.name).join('<br>');
+
+                    // Filter countries that have states
+                    const countriesWithStates = countries.filter(country => Array.isArray(country.states) && country.states.length > 0);
+                    const countriesWithStatesNames = countriesWithStates.map(country => country.name).join('<br>');
+
+                    document.getElementById('output').innerHTML = `
+                        <h3>First 50 Countries:</h3>
+                        ${first50CountryNames}
+                        <h3>Countries with States:</h3>
+                        ${countriesWithStatesNames}
+                    `;
+                } else {
+                    document.getElementById('output').innerHTML = 'No countries found';
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error); // Console log the error
+                document.getElementById('output').innerText = 'Error fetching data. Please check the console.';
+            }
+        }
+    </script>
+</body>
+</html>

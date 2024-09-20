@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country and State Selector</title>
+    <style>
+        /* Add some basic styling */
+        select {
+            margin: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select Country and State</h1>
+    <select id="countryDropdown">
+        <option value="">Select Country</option>
+    </select>
+
+    <select id="stateDropdown">
+        <option value="">Select State</option>
+    </select>
+
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const countryDropdown = document.getElementById('countryDropdown');
+    const stateDropdown = document.getElementById('stateDropdown');
+
+    let countryData = {};
+    let stateData = {};
+
+    // Fetch data from URL
+    fetch('https://countriesnow.space/api/v0.1/countries/states') // Replace with your URL
+        .then(response => response.json())
+        .then(data => {
+            countryData = data.countries; // Assuming the data is structured with a 'countries' key
+            stateData = data.states; // Assuming the data is structured with a 'states' key
+
+            populateCountryDropdown();
+        })
+        .catch(error => console.error('Error fetching data:', error));
+
+    function populateCountryDropdown() {
+        for (const country of Object.keys(countryData)) {
+            const option = document.createElement('option');
+            option.value = country;
+            option.textContent = country;
+            countryDropdown.appendChild(option);
+        }
+    }
+
+    countryDropdown.addEventListener('change', function() {
+        const selectedCountry = this.value;
+        populateStateDropdown(selectedCountry);
+    });
+
+    function populateStateDropdown(country) {
+        // Clear previous states
+        stateDropdown.innerHTML = '<option value="">Select State</option>';
+
+        if (country && stateData[country]) {
+            for (const state of stateData[country]) {
+                const option = document.createElement('option');
+                option.value = state;
+                option.textContent = state;
+                stateDropdown.appendChild(option);
+            }
+        }
+    }
+});
+
+   </script>
+</body>
+</html>

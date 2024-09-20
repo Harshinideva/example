@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries and States Dropdown</title>
+</head>
+<body>
+    <label for="countryDropdown">Select Country:</label>
+    <select id="countryDropdown">
+        <option value="">Select a country</option>
+    </select>
+
+    <label for="stateDropdown">Select State:</label>
+    <select id="stateDropdown">
+        <option value="">Select a state</option>
+    </select>
+
+    <script>
+        async function fetchData() {
+            const url = 'https://countriesnow.space/api/v0.1/countries/states';
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('Fetched Data:', data); // Console log the data
+
+                const countries = data.data;
+                const countryDropdown = document.getElementById('countryDropdown');
+                const stateDropdown = document.getElementById('stateDropdown');
+
+                if (Array.isArray(countries)) {
+                    // Populate country dropdown
+                    countries.forEach(country => {
+                        if (country.states && country.states.length > 0) {
+                            const option = document.createElement('option');
+                            option.value = country.name;
+                            option.textContent = country.name;
+                            countryDropdown.appendChild(option);
+                        }
+                    });
+
+                    // Event listener for country dropdown change
+                    countryDropdown.addEventListener('change', function() {
+                        const selectedCountry = this.value;
+                        const selectedCountryData = countries.find(item => item.name === selectedCountry);
+                        
+                        // Clear state dropdown
+                        stateDropdown.innerHTML = '<option value="">Select a state</option>';
+                        
+                        if (selectedCountryData && selectedCountryData.states) {
+                            selectedCountryData.states.forEach(state => {
+                                const option = document.createElement('option');
+                                option.value = state.name;
+                                option.textContent = state.name;
+                                stateDropdown.appendChild(option);
+                            });
+                        }
+                    });
+                } else {
+                    console.error('Unexpected data format:', data);
+                    document.getElementById('stateDropdown').innerText = 'No countries found';
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error); // Console log the error
+                document.getElementById('stateDropdown').innerText = 'Error fetching data. Please check the console.';
+            }
+        }
+
+        // Call fetchData() to load data when the page loads
+        fetchData();
+    </script>
+</body>
+</html>
